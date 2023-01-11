@@ -1,0 +1,31 @@
+.bg-hot-pink {
+  background-color: #ff69b4;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+.thickness-2 {
+  height: 3px !important;
+}
+
+.form-newsletter {
+  border: #ff69b4 solid 1px;
+  width: 100%;
+}
+
+.form-newsletter-label {
+  color: #ff69b4 !important;
+}
+
+.darken-label {
+  color: #cf0068 !important;
+}
+
+.form-newsletter:focus {
+  border: #ff69b4 solid 1px;
+  box-shadow: 0 0 9px 1px #ff69b4;
+}
+
+/*# sourceMappingURL=general.css.map */

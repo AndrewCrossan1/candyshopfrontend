@@ -1,0 +1,91 @@
+/* Transition change for navbar brand */
+.navbar-brand {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-shadow {
+  -moz-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+  -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+}
+
+/* Nav link hovers */
+.nav-link:hover {
+  color: #cf0068 !important;
+}
+
+.navbar-brand:hover {
+  color: #cf0068 !important;
+}
+
+.btn-search {
+  background-color: #FF69B4;
+  color: white;
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+/* Custom styling for search bar */
+.btn-search:hover {
+  background-color: #cf0068;
+  color: #fff;
+}
+
+.search-form {
+  border: 1px solid #FF69B4 !important;
+  outline: none !important;
+}
+.search-form:focus {
+  box-shadow: none !important;
+}
+
+.account-drop {
+  color: #fff !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.account-drop-text {
+  color: #fff !important;
+}
+
+.account-drop:hover {
+  background-color: #fff !important;
+  color: #FF69B4 !important;
+}
+.account-drop:hover .account-drop-text {
+  color: #FF69B4 !important;
+}
+
+/* Custom styling for dropdown menu size */
+@media (min-width: 0px) {
+  .dropdown-menu {
+    width: 100% !important;
+  }
+}
+@media (min-width: 576px) {
+  .dropdown-menu {
+    width: 35% !important;
+  }
+}
+@media (min-width: 768px) {
+  .dropdown-menu {
+    width: 30% !important;
+  }
+}
+@media (min-width: 992px) {
+  .dropdown-menu {
+    width: 25% !important;
+  }
+}
+@media (min-width: 1200px) {
+  .dropdown-menu {
+    width: 20% !important;
+  }
+}
+@media (min-width: 1400px) {
+  .dropdown-menu {
+    width: 15% !important;
+  }
+}
+
+/*# sourceMappingURL=nav.css.map */

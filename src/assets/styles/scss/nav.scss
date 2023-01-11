@@ -1,0 +1,98 @@
+$graphite-gray: #53565b;
+$cornflower-blue: #6495ED;
+$white: #fff;
+$warning: #FFC107;
+$hot-pink: #FF69B4;
+$danger: #DC3545;
+$success: #28A745;
+
+/* Transition change for navbar brand */
+.navbar-brand {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-shadow {
+  -moz-box-shadow:0 5px 5px rgba(182, 182, 182, 0.75);
+  -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+}
+
+/* Nav link hovers */
+.nav-link:hover {
+  color: darken($hot-pink, 30%) !important;
+}
+
+.navbar-brand:hover {
+  color: darken($hot-pink, 30%) !important;
+}
+
+.btn-search {
+  background-color: $hot-pink;
+  color: white;
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+/* Custom styling for search bar */
+.btn-search:hover {
+  background-color: darken($hot-pink, 30%);
+  color: $white;
+}
+.search-form {
+  border: 1px solid $hot-pink !important;
+  outline: none !important;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.account-drop {
+  color: $white !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.account-drop-text {
+  color: $white !important;
+}
+
+.account-drop:hover {
+    background-color: $white !important;
+    color: $hot-pink !important;
+
+    .account-drop-text {
+      color: $hot-pink !important;
+    }
+}
+
+/* Custom styling for dropdown menu size */
+@media (min-width: 0px) {
+  .dropdown-menu {
+    width: 100% !important;
+  }
+}
+@media (min-width: 576px) {
+  .dropdown-menu {
+    width: 35% !important;
+  }
+}
+@media (min-width: 768px) {
+  .dropdown-menu {
+    width: 30% !important;
+  }
+}
+@media (min-width: 992px) {
+  .dropdown-menu {
+    width: 25% !important;
+  }
+}
+@media (min-width: 1200px) {
+  .dropdown-menu {
+    width: 20% !important;
+  }
+}
+@media (min-width: 1400px) {
+  .dropdown-menu {
+    width: 15% !important;
+  }
+}
+

@@ -1,0 +1,84 @@
+/* Button colors */
+.btn-cornflower-blue {
+  background-color: #6495ED;
+  color: #fff;
+}
+
+.btn-outline-cornflower-blue {
+  background-color: transparent;
+  color: #6495ED;
+  border: 1px solid #6495ED;
+}
+
+.btn-graphite-gray {
+  background-color: #53565b;
+  color: #fff;
+}
+
+.btn-hot-pink {
+  background-color: #FF69B4;
+  color: #fff;
+}
+
+.btn-outline-hot-pink {
+  background-color: transparent;
+  color: #FF69B4;
+  border: 1px solid #FF69B4;
+}
+
+.btn-outline-hot-pink:hover {
+  background-color: #FF69B4;
+  color: #fff !important;
+}
+
+.btn-outline-white {
+  background-color: transparent !important;
+  border: 1px solid #fff;
+  color: #fff !important;
+}
+
+.btn-outline-white:hover {
+  background-color: #fff !important;
+  color: #FF69B4 !important;
+}
+
+/* Button hovers */
+.btn-cornflower-blue:hover {
+  background-color: #3676e8;
+}
+
+.btn-outline-cornflower-blue:hover {
+  background-color: #6495ED;
+  color: #fff;
+}
+
+.btn-graphite-gray:hover {
+  background-color: #6495ED;
+  color: #fff;
+}
+
+.btn-outline-hot-pink:focus {
+  background-color: #FF69B4;
+  color: #fff;
+}
+
+.rotate {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.btn-filter {
+  background-color: #fff;
+  color: #FF69B4;
+}
+
+.btn-filter:hover {
+  background-color: #fff;
+  color: #FF69B4;
+  border: 1px solid #FF69B4;
+}
+
+/*# sourceMappingURL=buttons.css.map */

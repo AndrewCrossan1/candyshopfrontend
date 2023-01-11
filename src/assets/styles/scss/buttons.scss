@@ -1,0 +1,82 @@
+$graphite-gray: #53565b;
+$cornflower-blue: #6495ED;
+$white: #fff;
+$warning: #FFC107;
+$hot-pink: #FF69B4;
+$danger: #DC3545;
+$success: #28A745;
+
+/* Button colors */
+.btn-cornflower-blue {
+  background-color: $cornflower-blue;
+  color: $white;
+}
+.btn-outline-cornflower-blue {
+  background-color: transparent;
+  color: $cornflower-blue;
+  border: 1px solid $cornflower-blue;
+}
+.btn-graphite-gray {
+  background-color: $graphite-gray;
+  color: $white;
+}
+.btn-hot-pink {
+    background-color: $hot-pink;
+    color: $white;
+}
+
+.btn-outline-hot-pink {
+  background-color: transparent;
+  color: $hot-pink;
+  border: 1px solid $hot-pink;
+}
+.btn-outline-hot-pink:hover {
+  background-color: $hot-pink;
+  color: $white !important;
+}
+.btn-outline-white {
+    background-color: transparent !important;
+    border: 1px solid $white;
+    color: $white !important;
+}
+.btn-outline-white:hover {
+    background-color: $white !important;
+    color: $hot-pink !important;
+}
+
+/* Button hovers */
+.btn-cornflower-blue:hover {
+  background-color: darken($cornflower-blue, 10%);
+}
+.btn-outline-cornflower-blue:hover {
+  background-color: $cornflower-blue;
+  color: $white;
+}
+.btn-graphite-gray:hover {
+  background-color: $cornflower-blue;
+  color: $white;
+}
+
+.btn-outline-hot-pink:focus {
+    background-color: $hot-pink;
+    color: $white;
+}
+
+.rotate {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.btn-filter {
+    background-color: $white;
+    color: $hot-pink;
+}
+
+.btn-filter:hover {
+    background-color: $white;
+    color: $hot-pink;
+    border: 1px solid $hot-pink;
+}

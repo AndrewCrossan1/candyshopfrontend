@@ -1,0 +1,25 @@
+$hot-pink: #ff69b4;
+$white: #fff;
+
+.select-hot-pink:focus {
+  border: $hot-pink solid 1px !important;
+  box-shadow: 0 0 9px 1px $hot-pink !important;
+}
+
+.form-check-label {
+  margin-left: 5px !important;
+}
+
+.form-check-label:hover {
+  cursor: pointer;
+    text-decoration: underline;
+}
+
+input[type=checkbox]:checked {
+    accent-color: $hot-pink;
+    color: $white;
+    border: $hot-pink solid 1px;
+}
+input[type=checkbox]:checked:before {
+  color: $white !important;
+}

@@ -1,0 +1,25 @@
+.select-hot-pink:focus {
+  border: #ff69b4 solid 1px !important;
+  box-shadow: 0 0 9px 1px #ff69b4 !important;
+}
+
+.form-check-label {
+  margin-left: 5px !important;
+}
+
+.form-check-label:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+input[type=checkbox]:checked {
+  accent-color: #ff69b4;
+  color: #fff;
+  border: #ff69b4 solid 1px;
+}
+
+input[type=checkbox]:checked:before {
+  color: #fff !important;
+}
+
+/*# sourceMappingURL=forms.css.map */

@@ -1,0 +1,54 @@
+@import 'https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap';
+/* Text fonts */
+.text-bebas-neue {
+  font-family: "Bebas Neue", cursive;
+}
+
+.text-montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Text sizes */
+.text-massive {
+  font-size: 3rem;
+}
+
+.text-xxl {
+  font-size: 2.5rem;
+}
+
+.text-xl {
+  font-size: 2rem;
+}
+
+.text-lg {
+  font-size: 1.5rem;
+}
+
+.text-md {
+  font-size: 1.25rem;
+}
+
+.text-sm {
+  font-size: 1rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+/* Text colors */
+.text-cornflower-blue {
+  color: #6495ED !important;
+}
+
+.text-graphite-gray {
+  color: #53565b !important;
+}
+
+.text-hot-pink {
+  color: #FF69B4 !important;
+}
+
+/*# sourceMappingURL=fonts.css.map */

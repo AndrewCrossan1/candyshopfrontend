@@ -1,0 +1,29 @@
+$hot-pink: #ff69b4;
+
+.bg-hot-pink {
+    background-color: $hot-pink;
+}
+.bg-white {
+    background-color: #fff !important;
+}
+
+.thickness-2 {
+    height: 3px !important;
+}
+
+.form-newsletter {
+    border: $hot-pink solid 1px;
+    width: 100%;
+}
+.form-newsletter-label {
+    color: $hot-pink !important;
+}
+
+.darken-label {
+    color: darken($hot-pink, 30%) !important;
+}
+
+.form-newsletter:focus {
+    border: $hot-pink solid 1px;
+    box-shadow: 0 0 9px 1px $hot-pink;
+}
