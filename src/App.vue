@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <TopBar v-if="message">
+    <!--<TopBar v-if="message">
       <template v-slot:message>
         <div v-html="message"></div>
       </template>
-    </TopBar>
+    </TopBar>-->
     <NavBar/>
     <router-view/>
     <footer-component/>
@@ -13,9 +13,13 @@
 <script>
 import NavBar from "@/components/NavBar";
 import FooterComponent from "@/components/footer-component";
-import TopBar from "@/components/TopBar";
+//import TopBar from "@/components/TopBar";
 export default {
-  components: {FooterComponent, NavBar, TopBar},
+  components: {
+    FooterComponent,
+    NavBar,
+    //TopBar
+  },
   data() {
     return {
 
