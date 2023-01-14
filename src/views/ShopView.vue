@@ -108,9 +108,36 @@ export default {
     },
   },
   async mounted() {
-    await this.$store.dispatch("getProducts");
-    await this.$store.dispatch("getBrands");
-    await this.$store.dispatch("getCategories");
+    await this.$store.dispatch("getProducts")
+        .then(
+            () => {
+              this.products = this.$store.getters.products;
+            }
+        ).catch(
+            () => {
+              this.$router.push({ name: "500" });
+            }
+        );
+    await this.$store.dispatch("getBrands")
+        .then(
+          () => {
+            this.brands = this.$store.getters.brands;
+          }
+        ).catch(
+          () => {
+            this.$router.push({ name: "500" });
+          }
+      );
+    await this.$store.dispatch("getCategories")
+        .then(
+          () => {
+            this.categories = this.$store.getters.categories;
+          }
+        ).catch(
+          () => {
+            this.$router.push({ name: "500" });
+          }
+        );
   },
   methods: {
     spinChevron(chev) {
