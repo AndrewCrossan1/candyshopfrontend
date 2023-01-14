@@ -8,6 +8,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import './assets/styles/main.css';
+import 'animate.css';
 
 Vue.config.productionTip = false
 
