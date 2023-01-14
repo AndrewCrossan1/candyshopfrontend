@@ -34,3 +34,8 @@
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
 }
+
+.py-xl-10 {
+    padding-top: 10rem !important;
+    padding-bottom: 10rem !important;
+}
