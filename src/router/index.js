@@ -76,6 +76,23 @@ const routes = [
     },
   },
   {
+    path: '/brand/:name/',
+    name: 'Products by brand',
+    component: () => import(/* webpackChunkName: "category" */ '../views/Shop/ShopView.vue'),
+    meta: {
+      requiresAuth: false,
+      seo: {
+        title: `Products by Brand`,
+        metaTags: [
+          {
+            description: 'Products by brand description',
+            keywords: 'products, brand, keywords',
+          }
+        ],
+      },
+    },
+  },
+  {
     path: '/500/',
     name: '500',
     component: () => import(/* webpackChunkName: "500" */ '../views/errors/error-500.vue'),
@@ -105,6 +122,21 @@ const routes = [
             description: '404 - Page Not Found',
             keywords: '404, error',
 
+          }
+        ]
+      }
+    }
+  },
+  {
+    path: '*',
+    component: () => import(/* webpackChunkName: "404" */ '../views/errors/error-404.vue'),
+    meta: {
+      requiresAuth: false,
+      seo: {
+        title: '404 - Page Not Found',
+        metaTags: [
+          {
+            description: '404 - Page Not Found',
           }
         ]
       }
