@@ -5,6 +5,7 @@ const state = {
     brands: sessionStorage.getItem('brands') || {},
     categories: sessionStorage.getItem('categories') || {},
     category: sessionStorage.getItem('category') || {},
+    brand: sessionStorage.getItem('brand') || {},
 }
 
 const getters = {
@@ -12,6 +13,7 @@ const getters = {
     brands: state => state.brands,
     categories: state => state.categories,
     category: state => state.category,
+    brand: state => state.brand,
 }
 
 const mutations = {
@@ -26,6 +28,9 @@ const mutations = {
     },
     SET_CATEGORY(state, category) {
         state.category = category;
+    },
+    SET_BRAND(state, brand) {
+        state.brand = brand;
     }
 }
 
@@ -82,6 +87,31 @@ const actions = {
                         })
                         .catch((error) => {
                             commit('SET_CATEGORY', {})
+                            reject(error)
+                        })
+                })
+                .catch(error => {
+                    commit('SET_PRODUCTS', {})
+                    reject(error)
+                });
+        })
+    },
+    async getProductsByBrand({ commit }, name) {
+        return new Promise(function(resolve, reject) {
+            axios.get('http://localhost:8000/api/v1/shop/products/get_products_by_brand/?brand_name=' + name)
+                .then(async response => {
+                    if (response.data.length > 0) {
+                        commit('SET_PRODUCTS', response.data)
+                    } else {
+                        commit('SET_PRODUCTS', [])
+                    }
+                    await axios.get('http://localhost:8000/api/v1/shop/brands/by_name/?brand_name=' + name)
+                        .then((response) => {
+                            commit('SET_BRAND', response.data[0])
+                            resolve(response);
+                        })
+                        .catch((error) => {
+                            commit('SET_BRAND', {})
                             reject(error)
                         })
                 })
