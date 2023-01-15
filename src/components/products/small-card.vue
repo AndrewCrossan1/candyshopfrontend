@@ -1,6 +1,6 @@
 <template>
     <div v-if="view === 'grid' || view === null" class="col-md-6 col-12 col-sm-6 col-lg-4 col-xl-3 mb-2 mb-xl-3 mb-lg-2 mb-md-1 d-flex align-items-stretch">
-      <b-card class="border-1">
+      <b-card class="border-0 p-2 shadow shadow-md">
         <b-card-img
             :src="product.Image"
             :alt="product.Name"
@@ -11,16 +11,21 @@
           <b-card-title class="text-sm text-center ">
             {{ product.Name}}
           </b-card-title>
-          <b-card-text class="text-center">
-            {{ product.Price | currency }}
-            <b-rating color="#ff69b4" :value="product.Prop_Rating" readonly/>
-          </b-card-text>
+          <b-row>
+            <div class="col-6">
+              {{ product.Price | currency }}
+            </div>
+            <div class="col-6">
+              {{ product.Prop_Rating }} <b-icon icon="star-fill"/>
+            </div>
+          </b-row>
         </b-card-body>
-        <b-card-footer>
-          <b-button variant="outline-hot-pink" class="mt-auto w-100">
-            Add to cart
-          </b-button>
-        </b-card-footer>
+          <b-input-group>
+            <b-input type="number" v-model="Quantity"/>
+            <b-button variant="outline-hot-pink" class="mt-auto">
+              Add to cart
+            </b-button>
+          </b-input-group>
       </b-card>
     </div>
     <div v-else-if="view === 'list'" class="col-12 my-2">
@@ -89,6 +94,7 @@ export default {
   data() {
     return {
       price: "",
+      Quantity: 1,
     }
   }
 }
