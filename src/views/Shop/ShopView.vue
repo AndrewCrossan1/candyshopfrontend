@@ -46,8 +46,8 @@
                 <p class="text-montserrat text-hot-pink">All products</p>
               </div>
               <div v-else>
-                <h1 class="text-bebas-neue text-hot-pink">{{ cat.name }}</h1>
-                <p class="text-montserrat text-hot-pink">{{ cat.description }}</p>
+                <h1 class="text-bebas-neue text-hot-pink">{{ cat.Name }}</h1>
+                <p class="text-montserrat text-hot-pink">{{ cat.Description }}</p>
               </div>
             </div>
             <hr/>
@@ -73,10 +73,12 @@
             <hr class="mt-4 thickness-2"/>
           </b-row>
         </b-row>
-        <b-row class="equal-cols" v-if="view === 'list' || view === 'null'">
+        <b-row class="equal-cols text-center" v-if="view === 'list' || view === 'null'">
+          <h1 v-if="products.length <= 0" class="text-bebas-neue text-hot-pink text-xxl py-5">No products found</h1>
           <SmallCard :product="product" v-for="product in products" v-bind:key="product.ProductID" :view="view"/>
         </b-row>
-        <b-row v-else>
+        <b-row v-else class="text-center">
+          <h1 v-if="products.length <= 0" class="text-bebas-neue text-hot-pink text-xxl py-5">No products found</h1>
           <SmallCard :product="product" v-for="product in products" v-bind:key="product.ProductID" :view="view"/>
         </b-row>
       </div>
@@ -88,7 +90,7 @@
 import SelectInput from "@/components/forms/SelectInput";
 import SmallCard from "@/components/products/small-card";
 //import BrandFilter from "@/components/forms/BrandFilter";
-import { mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 
 export default {
@@ -108,36 +110,50 @@ export default {
     },
   },
   async mounted() {
-    await this.$store.dispatch("getProducts")
-        .then(
-            () => {
-              this.products = this.$store.getters.products;
+    // Get brands
+    await this.$store.dispatch("getBrands")
+        .then(() => {
+              this.brands = this.$store.getters.brands;
             }
-        ).catch(
-            () => {
+        ).catch(() => {
               this.$router.push({ name: "500" });
             }
         );
-    await this.$store.dispatch("getBrands")
-        .then(
-          () => {
-            this.brands = this.$store.getters.brands;
-          }
-        ).catch(
-          () => {
-            this.$router.push({ name: "500" });
+    // Get Categories
+    await this.$store.dispatch("getCategories")
+        .then(() => {
+              this.categories = this.$store.getters.categories;
+            }
+        ).catch(() => {
+              this.$router.push({ name: "500" });
+            }
+        );
+    // Get products by category
+    if (this.$route.name === 'Products By Category' || this.$route.params.name) {
+      console.log(this.$route.params.name);
+      await this.getProductsByCategory(this.$route.params.name)
+          .then(() => {
+              this.cat = this.$store.getters.category;
+              this.products = this.$store.getters.products
+          })
+          .catch((error) => {
+              if (error.response.status === 404) {
+                this.$router.push({ name: "404" });
+              } else {
+                this.$router.push({ name: "500" });
+              }
           }
       );
-    await this.$store.dispatch("getCategories")
-        .then(
-          () => {
-            this.categories = this.$store.getters.categories;
-          }
-        ).catch(
-          () => {
-            this.$router.push({ name: "500" });
-          }
-        );
+    } else {
+      await this.$store.dispatch("getProducts")
+          .then(() => {
+                this.products = this.$store.getters.products;
+              }
+          ).catch(() => {
+                this.$router.push({ name: "500" });
+              }
+          );
+    }
   },
   methods: {
     spinChevron(chev) {
@@ -166,6 +182,8 @@ export default {
       });
       this.$store.state.products = products;
     },
+    // Get the category from the URL and execute vuex action
+    ...mapActions(["getProductsByCategory"]),
   },
   data() {
     return {
