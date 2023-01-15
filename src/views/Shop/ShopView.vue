@@ -41,13 +41,17 @@
           <!-- Sorting and View Options -->
           <b-row>
             <div class="cat-heading">
-              <div v-if="!cat">
+              <div v-if="!cat && !brand">
                 <h1 class="text-bebas-neue text-hot-pink text-xxl">Shop</h1>
                 <p class="text-montserrat text-hot-pink">All products</p>
               </div>
-              <div v-else>
+              <div v-else-if="cat">
                 <h1 class="text-bebas-neue text-hot-pink">{{ cat.Name }}</h1>
                 <p class="text-montserrat text-hot-pink">{{ cat.Description }}</p>
+              </div>
+              <div v-else-if="brand">
+                <h1 class="text-bebas-neue text-hot-pink">{{ brand.Name }}</h1>
+                <p class="text-montserrat text-hot-pink">{{ brand.Description }}</p>
               </div>
             </div>
             <hr/>
@@ -129,11 +133,26 @@ export default {
             }
         );
     // Get products by category
-    if (this.$route.name === 'Products By Category' || this.$route.params.name) {
+    if (this.$route.name === 'Products by category' && this.$route.params.name) {
       console.log(this.$route.params.name);
       await this.getProductsByCategory(this.$route.params.name)
           .then(() => {
               this.cat = this.$store.getters.category;
+              this.products = this.$store.getters.products
+          })
+          .catch((error) => {
+              if (error.response.status === 404) {
+                this.$router.push({ name: "404" });
+              } else {
+                this.$router.push({ name: "500" });
+              }
+          }
+      );
+    } else if (this.$route.name === 'Products by brand' && this.$route.params.name) {
+      console.log(this.$route.params.name);
+      await this.getProductsByBrand(this.$route.params.name)
+          .then(() => {
+              this.brand = this.$store.getters.brand;
               this.products = this.$store.getters.products
           })
           .catch((error) => {
@@ -183,7 +202,7 @@ export default {
       this.$store.state.products = products;
     },
     // Get the category from the URL and execute vuex action
-    ...mapActions(["getProductsByCategory"]),
+    ...mapActions(["getProductsByCategory", "getProductsByBrand"]),
   },
   data() {
     return {
@@ -209,6 +228,7 @@ export default {
       selectedBrands: [],
       selectedCategories: [],
       cat: null,
+      brand: null,
     };
   },
 }
