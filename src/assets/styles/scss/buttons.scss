@@ -32,6 +32,7 @@ $success: #28A745;
 }
 .btn-outline-hot-pink:hover {
   background-color: $hot-pink;
+  border: 1px solid $hot-pink;
   color: $white !important;
 }
 .btn-outline-white {
@@ -79,4 +80,10 @@ $success: #28A745;
     background-color: $white;
     color: $hot-pink;
     border: 1px solid $hot-pink;
+}
+
+.activeAuth {
+  background-color: $hot-pink !important;
+  border: 1px solid $hot-pink !important;
+  color: white !important;
 }
