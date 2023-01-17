@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 const state = {
-    products: sessionStorage.getItem('products') || {},
-    brands: sessionStorage.getItem('brands') || {},
-    categories: sessionStorage.getItem('categories') || {},
-    category: sessionStorage.getItem('category') || {},
-    brand: sessionStorage.getItem('brand') || {},
+    products: {},
+    brands: {},
+    categories: {},
+    category: {},
+    brand: {},
 }
 
 const getters = {
