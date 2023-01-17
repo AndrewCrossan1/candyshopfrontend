@@ -92,7 +92,7 @@
 
 <script>
 import SelectInput from "@/components/forms/SelectInput";
-import SmallCard from "@/components/products/small-card";
+import SmallCard from "@/components/products/ProductCard";
 //import BrandFilter from "@/components/forms/BrandFilter";
 import {mapActions, mapGetters} from "vuex";
 
