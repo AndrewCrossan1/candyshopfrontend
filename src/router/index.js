@@ -141,6 +141,38 @@ const routes = [
         ]
       }
     }
+  },
+  {
+    path: '/login/',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/AuthView.vue'),
+    meta: {
+        requiresAuth: false,
+        seo: {
+            title: 'Login',
+            metaTags: [
+                {
+                    description: 'Login page description',
+                }
+            ]
+        }
+    }
+  },
+  {
+    path: '/register/',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "register" */ '../views/AuthView.vue'),
+    meta: {
+        requiresAuth: false,
+        seo: {
+            title: 'Register',
+            metaTags: [
+                {
+                    description: 'Register page description',
+                }
+            ]
+        }
+    }
   }
 ]
 
