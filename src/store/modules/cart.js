@@ -31,9 +31,6 @@ const actions = {
     async addProduct({ commit }, payload) {
         commit('ADD_PRODUCT', payload);
     },
-    async removeProduct({ commit }, product) {
-        commit('REMOVE_PRODUCT', product);
-    }
 }
 
 export const cart = {
