@@ -85,7 +85,7 @@
           Logout
         </b-dropdown-item>
       </b-dropdown>
-      <b-button v-else variant="none" to="#" class="btn btn-white ml-auto account-drop">
+      <b-button v-else variant="none" :to="{name: 'login'}" class="btn btn-white ml-auto account-drop">
               <span class="account-drop-text">
                 Login
               <b-icon
@@ -129,7 +129,7 @@ export default {
     },
     checkDebug() {
       if (process.env.NODE_ENV === "development") {
-        this.isLoggedIn = true;
+        this.isLoggedIn = false;
       } else {
         this.isLoggedIn = undefined;
       }
