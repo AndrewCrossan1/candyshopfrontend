@@ -17,6 +17,8 @@
     "core-js": "^3.8.3",
     "jquery": "^3.6.3",
     "vue": "^2.6.14",
+    "vue-country-dropdown": "^2.0.8",
+    "vue-country-select": "^0.2.2",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "^4.1.0"
@@ -31,8 +33,8 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "sass": "^1.32.7",
-    "sass-loader": "^12.0.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^12.6.0",
     "vue-template-compiler": "^2.6.14"
   }
 }
