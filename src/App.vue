@@ -7,12 +7,12 @@
     </TopBar>-->
     <NavBar/>
     <router-view/>
-    <footer-component/>
+    <FooterComponent/>
   </div>
 </template>
 <script>
 import NavBar from "@/components/NavBar";
-import FooterComponent from "@/components/footer-component";
+import FooterComponent from "@/components/FooterComponent";
 //import TopBar from "@/components/TopBar";
 export default {
   components: {
