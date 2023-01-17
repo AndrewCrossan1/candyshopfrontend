@@ -27,3 +27,23 @@ $hot-pink: #ff69b4;
     border: $hot-pink solid 1px;
     box-shadow: 0 0 9px 1px $hot-pink;
 }
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #c2c2c2;
+
+    &::before,
+    &::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #c2c2c2;
+    }
+    &::before {
+        margin-right: 0.25em;
+    }
+    &::after {
+        margin-left: 0.25em;
+    }
+}
