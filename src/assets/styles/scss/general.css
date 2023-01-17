@@ -28,4 +28,22 @@
   box-shadow: 0 0 9px 1px #ff69b4;
 }
 
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #c2c2c2;
+}
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #c2c2c2;
+}
+.divider::before {
+  margin-right: 0.25em;
+}
+.divider::after {
+  margin-left: 0.25em;
+}
+
 /*# sourceMappingURL=general.css.map */
