@@ -21,8 +21,8 @@
           </b-row>
         </b-card-body>
           <b-input-group>
-            <b-input type="number" v-model="Quantity"/>
-            <b-button variant="outline-hot-pink" class="mt-auto">
+            <b-input type="number" v-model="quantity"/>
+            <b-button variant="outline-hot-pink" class="mt-auto" @click="addToCart">
               Add to cart
             </b-button>
           </b-input-group>
@@ -59,7 +59,7 @@
               {{ product.Description }}
             </b-card-body>
             <b-card-footer>
-              <b-button variant="outline-hot-pink" class="mt-auto w-100">
+              <b-button variant="outline-hot-pink" class="mt-auto w-100" @click="addToCart">
                 Add to cart
               </b-button>
             </b-card-footer>
@@ -94,9 +94,17 @@ export default {
   data() {
     return {
       price: "",
-      Quantity: 1,
+      quantity: 1,
     }
-  }
+  },
+  methods: {
+    addToCart() {
+      this.$store.dispatch('addProduct', {
+        product: this.product,
+        quantity: this.quantity,
+      });
+    },
+  },
 }
 </script>
 
