@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { shop } from './modules/shop'
 import { cart } from './modules/cart'
+import { auth } from './modules/auth'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
@@ -17,11 +18,16 @@ const cartPersistedState = createPersistedState({
     paths: ['Cart'],
 });
 
+const authPersistedState = createPersistedState({
+    storage: window.sessionStorage,
+    paths: ['Auth'],
+});
 
 export default new Vuex.Store({
   modules: {
       Shop: shop,
-      Cart: cart
+      Cart: cart,
+      Auth: auth,
   },
-  plugins: [shopPersistedState, cartPersistedState],
+  plugins: [shopPersistedState, cartPersistedState, authPersistedState],
 })
