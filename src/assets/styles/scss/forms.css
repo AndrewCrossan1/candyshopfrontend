@@ -22,4 +22,9 @@ input[type=checkbox]:checked:before {
   color: #fff !important;
 }
 
+.form-auth:focus {
+  border: #ff69b4 solid 1px;
+  box-shadow: 0 0 9px 1px #ff69b4;
+}
+
 /*# sourceMappingURL=forms.css.map */
