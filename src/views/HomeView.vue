@@ -95,18 +95,10 @@
         </div>
         <div class="col-md-12 col-lg-8 my-2 ms-lg-5 ms-md-2">
           <b-row>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12 col-xl-3 mb-lg-2 mb-md-2 mb-4 mb-sm-2">
-              <small-card :product="this.product"/>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12 col-xl-3 mb-lg-2 mb-md-2 mb-4 mb-sm-2">
-              <small-card :product="this.product"/>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12 col-xl-3 mb-lg-2 mb-md-2 mb-4 mb-sm-2">
-              <small-card :product="this.product"/>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12 col-xl-3 mb-lg-2 mb-md-2 mb-4 mb-sm-2">
-              <small-card :product="this.product"/>
-            </div>
+              <ProductCard :product="this.product"/>
+              <ProductCard :product="this.product"/>
+              <ProductCard :product="this.product"/>
+              <ProductCard :product="this.product"/>
           </b-row>
         </div>
       </b-row>
@@ -118,42 +110,42 @@
       </h1>
       <b-row class="justify-content-center">
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
       </b-row>
       <b-row class="justify-content-center">
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
         <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 mb-2 mb-sm-2 mb-md-2 md-lg-2 md-xl-0">
-          <small-cat-card/>
+          <CategoryCard/>
         </div>
       </b-row>
     </b-container>
@@ -328,13 +320,14 @@
 <script>
 
 
-import SmallCard from "@/components/products/small-card";
-import SmallCatCard from "@/components/products/small-cat-card";
+import ProductCard from "@/components/products/ProductCard";
+import CategoryCard from "@/components/products/CategoryCard";
+
 export default {
   name: 'HomeView',
   components: {
-    SmallCard,
-    SmallCatCard
+    ProductCard,
+    CategoryCard
   },
   data() {
     return {
