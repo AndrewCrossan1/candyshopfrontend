@@ -5,6 +5,7 @@ import store from './store'
 import BootstrapVue, {IconsPlugin} from 'bootstrap-vue';
 import axios from 'axios';
 import VueCountryDropdown from 'vue-country-dropdown';
+import VueCarousel from 'vue-carousel';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -16,6 +17,7 @@ Vue.config.productionTip = false
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueCountryDropdown)
+Vue.use(VueCarousel)
 
 // Axios configuration
 Vue.prototype.$http = axios;
