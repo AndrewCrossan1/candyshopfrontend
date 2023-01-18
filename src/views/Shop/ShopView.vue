@@ -4,36 +4,6 @@
       <!-- Filters -->
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 bg-hot-pink text-white me-xl-5 me-lg-2 me-sm-0 me-0 me-md-0 me-0 rounded-2 p-3">
         <h3 class="text-bebas-neue text-start ms-xl-3 ms-lg-2 ms-md-1 ms-sm-0 ms-0 mb-3 pt-5 text-xxl">Filters</h3>
-        <!--
-        <div class="accordion">
-          <b-card no-body class="mb-1">
-            <b-card-header header-tag="header" class="p-1" role="tab">
-              <b-button block href="#collapseOne" @click="spinChevron('Cat');" variant="none" class="text-montserrat btn btn-filter w-100 mb-2" v-b-toggle.collapseOne>
-                Categories <b-icon id="chevCat" icon="chevron-down" class="ms-2"></b-icon>
-              </b-button>
-            </b-card-header>
-            <b-collapse id="collapseOne" accordion="my-accordion" role="tabpanel">
-              <b-card-body class="text-hot-pink">
-                <BrandFilter v-for="category in categories" :key="category.Name" :label="category.Name" :value="category.CategoryID" />
-              </b-card-body>
-            </b-collapse>
-          </b-card>
-        </div>
-        <div class="accordion">
-          <b-card no-body class="mb-1">
-            <b-card-header header-tag="header" class="p-1" role="tab">
-              <b-button block href="#collapseTwo" @click="spinChevron('Brand');" variant="none" class="text-montserrat btn btn-filter w-100 mb-2" v-b-toggle.collapseTwo>
-                Brands <b-icon id="chevBrand" icon="chevron-down" class="ms-2"></b-icon>
-              </b-button>
-            </b-card-header>
-            <b-collapse id="collapseTwo" accordion="my-accordion" role="tabpanel">
-              <b-card-body class="text-hot-pink">
-                <BrandFilter v-for="brand in brands" :key="brand.Name" :label="brand.Name" :value="brand.BrandID"/>
-              </b-card-body>
-            </b-collapse>
-          </b-card>
-        </div>
-        -->
       </div>
       <!-- Products -->
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 mt-3 mt-sm-3 mt-md-2 mt-lg-0 mt-xl-0">
@@ -75,6 +45,7 @@
               <SelectInput v-model="perPage" :options="perPageOptions" />
             </div>
             <hr class="mt-4 thickness-2"/>
+            <CategoryCarousel :categories="categories" />
           </b-row>
         </b-row>
         <b-row class="equal-cols text-center" v-if="view === 'list' || view === 'null'">
@@ -95,94 +66,26 @@ import SelectInput from "@/components/forms/SelectInput";
 import SmallCard from "@/components/products/ProductCard";
 //import BrandFilter from "@/components/forms/BrandFilter";
 import {mapActions, mapGetters} from "vuex";
-
+import CategoryCarousel from "@/components/CategoryCarousel";
 
 export default {
   name: "ShopView",
   components: {
+    CategoryCarousel,
     //BrandFilter,
     SmallCard,
     SelectInput
   },
   computed: {
     ...mapGetters(["products"]),
-    brands: function() {
-      return this.$store.getters.brands;
-    },
     categories: function() {
       return this.$store.getters.categories;
     },
   },
   async mounted() {
-    // Get brands
-    await this.$store.dispatch("getBrands")
-        .then(() => {
-              this.brands = this.$store.getters.brands;
-            }
-        ).catch(() => {
-              this.$router.push({ name: "500" });
-            }
-        );
-    // Get Categories
-    await this.$store.dispatch("getCategories")
-        .then(() => {
-              this.categories = this.$store.getters.categories;
-            }
-        ).catch(() => {
-              this.$router.push({ name: "500" });
-            }
-        );
-    // Get products by category
-    if (this.$route.name === 'Products by category' && this.$route.params.name) {
-      console.log(this.$route.params.name);
-      await this.getProductsByCategory(this.$route.params.name)
-          .then(() => {
-              this.cat = this.$store.getters.category;
-              this.products = this.$store.getters.products
-          })
-          .catch((error) => {
-              if (error.response.status === 404) {
-                this.$router.push({ name: "404" });
-              } else {
-                this.$router.push({ name: "500" });
-              }
-          }
-      );
-    } else if (this.$route.name === 'Products by brand' && this.$route.params.name) {
-      console.log(this.$route.params.name);
-      await this.getProductsByBrand(this.$route.params.name)
-          .then(() => {
-              this.brand = this.$store.getters.brand;
-              this.products = this.$store.getters.products
-          })
-          .catch((error) => {
-              if (error.response.status === 404) {
-                this.$router.push({ name: "404" });
-              } else {
-                this.$router.push({ name: "500" });
-              }
-          }
-      );
-    } else {
-      await this.$store.dispatch("getProducts")
-          .then(() => {
-                this.products = this.$store.getters.products;
-              }
-          ).catch(() => {
-                this.$router.push({ name: "500" });
-              }
-          );
-    }
+    await this.getProducts()
   },
   methods: {
-    spinChevron(chev) {
-      let chevIcon = document.getElementById(`chev${chev}`);
-      if (chevIcon.classList.contains("rotate")) {
-        chevIcon.classList.remove("rotate");
-      } else {
-        chevIcon.classList.add("rotate");
-      }
-    },
     // Method to clear all filters
     sortBy() {
       let products = this.products
@@ -200,6 +103,66 @@ export default {
         }
       });
       this.$store.state.products = products;
+    },
+    async getProducts() {
+      // Get brands
+      await this.$store.dispatch("getBrands")
+          .then(() => {
+                this.brands = this.$store.getters.brands;
+              }
+          ).catch(() => {
+                this.$router.push({name: "500"});
+              }
+          );
+      // Get Categories
+      await this.$store.dispatch("getCategories")
+          .then(() => {
+                this.categories = this.$store.getters.categories;
+              }
+          ).catch(() => {
+                this.$router.push({name: "500"});
+              }
+          );
+      // Get products by category
+      if (this.$route.name === 'Products by category' && this.$route.params.name) {
+        await this.$store.dispatch('getProductsByCategory', this.$route.params.name)
+            .then(() => {
+              this.cat = this.$store.getters.category;
+              this.products = this.$store.getters.products
+            })
+            .catch((error) => {
+                  if (error.response.status === 404) {
+                    this.$router.push({name: "404"});
+                  } else {
+                    this.$router.push({name: "500"});
+                  }
+                }
+            );
+      } else if (this.$route.name === 'Products by brand' && this.$route.params.name) {
+        console.log(this.$route.params.name);
+        await this.getProductsByBrand(this.$route.params.name)
+            .then(() => {
+              this.brand = this.$store.getters.brand;
+              this.products = this.$store.getters.products
+            })
+            .catch((error) => {
+                  if (error.response.status === 404) {
+                    this.$router.push({name: "404"});
+                  } else {
+                    this.$router.push({name: "500"});
+                  }
+                }
+            );
+      } else {
+        await this.$store.dispatch("getProducts")
+            .then(() => {
+                  this.products = this.$store.getters.products;
+                }
+            ).catch(() => {
+                  this.$router.push({name: "500"});
+                }
+            );
+      }
     },
     // Get the category from the URL and execute vuex action
     ...mapActions(["getProductsByCategory", "getProductsByBrand"]),
