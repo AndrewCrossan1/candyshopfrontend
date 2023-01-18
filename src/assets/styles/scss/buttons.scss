@@ -87,3 +87,28 @@ $success: #28A745;
   border: 1px solid $hot-pink !important;
   color: white !important;
 }
+
+.category-pill {
+  background-color: transparent;
+  color: $hot-pink !important;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  transition: all 0.3s linear;
+
+  .category-link {
+    color: $hot-pink !important;
+    text-decoration: none;
+    transition: all 0.3s linear;
+  }
+
+  &:hover {
+    background-color: $hot-pink;
+    cursor: pointer;
+    color: $white;
+    .category-link {
+      color: $white !important;
+    }
+  }
+}

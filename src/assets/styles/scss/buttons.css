@@ -88,4 +88,27 @@
   color: white !important;
 }
 
+.category-pill {
+  background-color: transparent;
+  color: #FF69B4 !important;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  transition: all 0.3s linear;
+}
+.category-pill .category-link {
+  color: #FF69B4 !important;
+  text-decoration: none;
+  transition: all 0.3s linear;
+}
+.category-pill:hover {
+  background-color: #FF69B4;
+  cursor: pointer;
+  color: #fff;
+}
+.category-pill:hover .category-link {
+  color: #fff !important;
+}
+
 /*# sourceMappingURL=buttons.css.map */
