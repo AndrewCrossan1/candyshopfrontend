@@ -17,6 +17,7 @@
     "core-js": "^3.8.3",
     "jquery": "^3.6.3",
     "vue": "^2.6.14",
+    "vue-carousel": "^0.18.0",
     "vue-country-dropdown": "^2.0.8",
     "vue-country-select": "^0.2.2",
     "vue-router": "^3.5.1",
