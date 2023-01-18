@@ -65,7 +65,7 @@
 import SelectInput from "@/components/forms/SelectInput";
 import SmallCard from "@/components/products/ProductCard";
 //import BrandFilter from "@/components/forms/BrandFilter";
-import {mapActions, mapGetters} from "vuex";
+import {mapActions} from "vuex";
 import CategoryCarousel from "@/components/CategoryCarousel";
 
 export default {
@@ -77,13 +77,31 @@ export default {
     SelectInput
   },
   computed: {
-    ...mapGetters(["products"]),
-    categories: function() {
-      return this.$store.getters.categories;
+    categories: {
+      get() {
+        return this.$store.getters.categories;
+      },
+      set(value) {
+        this.$store.commit("SET_CATEGORIES", value);
+      }
+    },
+    products: {
+      get() {
+        return this.$store.getters.products;
+      },
+      set(value) {
+        this.$store.commit("SET_PRODUCTS", value);
+      }
     },
   },
-  async mounted() {
-    await this.getProducts()
+  created() {
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.getProducts();
+      },
+      { immediate: true }
+    );
   },
   methods: {
     // Method to clear all filters
@@ -104,9 +122,9 @@ export default {
       });
       this.$store.state.products = products;
     },
-    async getProducts() {
+    getProducts() {
       // Get brands
-      await this.$store.dispatch("getBrands")
+      this.$store.dispatch("getBrands")
           .then(() => {
                 this.brands = this.$store.getters.brands;
               }
@@ -115,7 +133,7 @@ export default {
               }
           );
       // Get Categories
-      await this.$store.dispatch("getCategories")
+      this.$store.dispatch("getCategories")
           .then(() => {
                 this.categories = this.$store.getters.categories;
               }
@@ -125,7 +143,7 @@ export default {
           );
       // Get products by category
       if (this.$route.name === 'Products by category' && this.$route.params.name) {
-        await this.$store.dispatch('getProductsByCategory', this.$route.params.name)
+        this.$store.dispatch('getProductsByCategory', this.$route.params.name)
             .then(() => {
               this.cat = this.$store.getters.category;
               this.products = this.$store.getters.products
@@ -140,7 +158,7 @@ export default {
             );
       } else if (this.$route.name === 'Products by brand' && this.$route.params.name) {
         console.log(this.$route.params.name);
-        await this.getProductsByBrand(this.$route.params.name)
+        this.getProductsByBrand(this.$route.params.name)
             .then(() => {
               this.brand = this.$store.getters.brand;
               this.products = this.$store.getters.products
@@ -154,7 +172,7 @@ export default {
                 }
             );
       } else {
-        await this.$store.dispatch("getProducts")
+        this.$store.dispatch("getProducts")
             .then(() => {
                   this.products = this.$store.getters.products;
                 }
