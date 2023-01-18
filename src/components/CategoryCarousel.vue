@@ -1,7 +1,7 @@
 <template>
   <carousel :perPage="5" :mouse-drag="true" class="mb-3" :autoplay="true" :touch-drag="true" :paginationEnabled="false">
     <slide v-for="category in categories" :key="category.CategoryID" class="category-pill">
-      <router-link :to="{name: 'Products by category', params: {name: category.get_url}}">{{ category.Name}}</router-link>
+      <b-link class="category-link" :to="{name: 'Products by category', params: {name: category.get_url}}">{{ category.Name}}</b-link>
     </slide>
   </carousel>
 </template>
