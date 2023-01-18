@@ -14,7 +14,7 @@
         <input type="password" placeholder="Password" v-model="password" name="password" id="password" required class="form-control form-auth">
         <label for="password" class="form-label mb-2">Password</label>
       </div>
-      <button class="btn btn-outline-hot-pink w-100">
+      <button class="btn btn-outline-hot-pink w-100" @click="login">
         Login
       </button>
       <div class="divider my-4">
@@ -44,8 +44,15 @@ export default {
       password: '',
     };
   },
-  mounted() {
-  },
+  methods: {
+    login() {
+      this.$store.dispatch('login', {email: this.username, password: this.password}).then(() => {
+        this.$router.push({name: 'home'});
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  }
 }
 </script>
 
