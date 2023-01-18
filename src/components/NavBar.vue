@@ -113,30 +113,23 @@ export default {
   name: "NavBar",
   computed: {
     ...mapGetters({
-          cartLength: 'getNoInCart'
-        }
+          cartLength: 'getNoInCart',
+          isLoggedIn: 'isLoggedIn'
+        },
     )
   },
   data() {
     return {
       searchData: "",
-      isLoggedIn: false,
     };
   },
   methods: {
     search() {
       console.log(this.searchData);
     },
-    checkDebug() {
-      if (process.env.NODE_ENV === "development") {
-        this.isLoggedIn = false;
-      } else {
-        this.isLoggedIn = undefined;
-      }
+    logout() {
+      this.$store.dispatch('logout');
     }
-  },
-  mounted() {
-    this.checkDebug();
   },
   filters: {
     pluralize: function (value, plural) {
