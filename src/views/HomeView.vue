@@ -95,10 +95,7 @@
         </div>
         <div class="col-md-12 col-lg-8 my-2 ms-lg-5 ms-md-2">
           <b-row>
-              <ProductCard :product="this.product"/>
-              <ProductCard :product="this.product"/>
-              <ProductCard :product="this.product"/>
-              <ProductCard :product="this.product"/>
+            <ProductCard v-for="product in newProducts" :product="product" v-bind:key="product.ProductID"/>
           </b-row>
         </div>
       </b-row>
@@ -329,15 +326,40 @@ export default {
     ProductCard,
     CategoryCard
   },
-  data() {
-    return {
-      product: {
-        name: 'Product name',
-        price: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'GBP' }).format(100),
-        image: 'https://picsum.photos/150/200',
-        rating: 3.5,
-      }
+  methods: {
+    getNewProducts() {
+      this.$store.dispatch('getNewProducts')
+          .then(() => {
+            this.newProducts = this.$store.getters.newProducts;
+          })
+          .catch((error) => {
+                if (error.response.status === 404) {
+                  this.$router.push({name: "404"});
+                } else {
+                  this.$router.push({name: "500"});
+                }
+              }
+          );
+    }
+  },
+computed: {
+  newProducts: {
+    get() {
+      return this.$store.getters['newProducts'];
+    },
+    set(value) {
+      this.$store.commit('SET_NEW_PRODUCTS', value);
     }
   }
+},
+created() {
+  this.$watch(
+      () => this.$route.name,
+      () => {
+        this.getNewProducts()
+      },
+      { immediate: true }
+  );
+}
 }
 </script>
