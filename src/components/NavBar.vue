@@ -93,7 +93,7 @@
               />
               </span>
       </b-button>
-      <b-link to="#" class="btn btn-white account-drop float-end">
+      <b-link :to="{name: 'cart'}" class="btn btn-white account-drop float-end">
               <span class="account-drop-text">
                 Cart ({{ this.cartLength | pluralize('item') }})
               <b-icon
