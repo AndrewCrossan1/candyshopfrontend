@@ -111,4 +111,16 @@
   color: #fff !important;
 }
 
+.btn-white.checkout {
+  background-color: #fff;
+  color: #FF69B4;
+  border: 1px solid #FF69B4;
+}
+
+.btn-white.checkout:hover {
+  background-color: #FF69B4;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
 /*# sourceMappingURL=buttons.css.map */

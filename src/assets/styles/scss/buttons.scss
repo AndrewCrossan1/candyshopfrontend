@@ -112,3 +112,15 @@ $success: #28A745;
     }
   }
 }
+
+.btn-white.checkout {
+  background-color: $white;
+  color: $hot-pink;
+  border: 1px solid $hot-pink;
+}
+
+.btn-white.checkout:hover {
+  background-color: $hot-pink;
+  border: 1px solid $white;
+  color: $white;
+}
