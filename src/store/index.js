@@ -8,19 +8,9 @@ import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 // Create a persisted state for the shop module
-const shopPersistedState = createPersistedState({
+const PersistedState = createPersistedState({
     storage: window.sessionStorage,
-    paths: ['Shop'],
-});
-
-const cartPersistedState = createPersistedState({
-    storage: window.sessionStorage,
-    paths: ['Cart'],
-});
-
-const authPersistedState = createPersistedState({
-    storage: window.sessionStorage,
-    paths: ['Auth'],
+    paths: ['Shop', 'Cart', 'Auth'],
 });
 
 export default new Vuex.Store({
@@ -29,5 +19,5 @@ export default new Vuex.Store({
       Cart: cart,
       Auth: auth,
   },
-  plugins: [shopPersistedState, cartPersistedState, authPersistedState],
+  plugins: [PersistedState],
 })
