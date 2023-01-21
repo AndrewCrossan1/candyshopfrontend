@@ -25,6 +25,23 @@ const routes = [
     }
   },
   {
+    path: '/cart/',
+    name: 'cart',
+    component: () => import(/* webpackChunkName: "cart" */ '../views/Shop/CartView.vue'),
+    meta: {
+        requiresAuth: false,
+        seo: {
+            title: 'Cart',
+            metaTags: [
+                {
+                    description: 'Cart page description',
+                    keywords: 'cart, page, description',
+                }
+            ],
+        }
+    }
+  },
+  {
     path: '/products/',
     name: 'products',
     component: () => import(/* webpackChunkName: "products" */ '../views/Shop/ShopView.vue'),
