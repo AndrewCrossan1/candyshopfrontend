@@ -8,10 +8,9 @@
         />
         <span> Sweetiez</span>
       </b-navbar-brand>
-      <b-navbar-toggle target="nav-collapse" class="btn btn-outline-hot-pink">
-        <template #default="{ expanded }">
-          <b-icon v-if="expanded" icon="chevron-up"/>
-          <b-icon v-else icon="chevron-down"/>
+      <b-navbar-toggle target="nav-collapse" class="btn btn-outline-hot-pink" @click="rotateCaret">
+        <template #default>
+          <b-icon id="nav-caret" icon="chevron-down"/>
         </template>
       </b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
@@ -129,6 +128,16 @@ export default {
     },
     logout() {
       this.$store.dispatch('logout');
+    },
+    rotateCaret() {
+      let caret = document.getElementById("nav-caret")
+      if (caret.classList.contains("rotate")) {
+        caret.classList.remove("rotate")
+        caret.classList.add("unrotate")
+      } else {
+        caret.classList.remove("unrotate")
+        caret.classList.add("rotate")
+      }
     }
   },
   filters: {
@@ -142,3 +151,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .rotate {
+    transform: rotate(180deg);
+    transition: transform 0.15s linear;
+  }
+  .unrotate {
+    transform: rotate(0deg);
+    transition: transform 0.15s linear;
+  }
+</style>
