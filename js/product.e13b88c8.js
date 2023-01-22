@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkcandyshop"]=self["webpackChunkcandyshop"]||[]).push([[18],{2379:function(e,n,u){u.r(n),u.d(n,{default:function(){return i}});var c=function(){var e=this,n=e._self._c;return n("div")},t=[],s={name:"DetailView"},a=s,l=u(1001),r=(0,l.Z)(a,c,t,!1,null,"50cdcdee",null),i=r.exports}}]);
+//# sourceMappingURL=product.e13b88c8.js.map
