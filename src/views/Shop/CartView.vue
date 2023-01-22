@@ -14,45 +14,51 @@
           </b-row>
           <b-row class="px-4">
             <!-- Cart Headers -->
-            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 d-sm-none d-xl-block d-lg-block d-md-block d-none">
               <h3 class="text-bebas-neue text-hot-pink text-lg">Product</h3>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 d-sm-none d-xl-block d-lg-block d-md-block d-none">
 
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 text-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 text-center d-sm-none d-xl-block d-lg-block d-md-block d-none">
               <h3 class="text-bebas-neue text-hot-pink text-lg">Quantity</h3>
             </div>
-            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 d-sm-none d-xl-block d-lg-block d-md-block d-none">
               <h3 class="text-bebas-neue text-hot-pink text-lg">Price</h3>
             </div>
           </b-row>
           <b-row class="px-4 my-2" v-for="{Product, Total, Quantity} in cartItems" v-bind:key="Product.ProductID">
-            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12 d-flex align-items-center">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 d-flex align-items-center justify-content-center">
               <img src="https://picsum.photos/200/200" class="img-fluid rounded-1" alt="Product Image">
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 d-flex align-items-center">
-              <h3 class="text-montserrat text-hot-pink text-sm">{{ Product.Name}}</h3>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 d-flex align-items-center
+             justify-content-center my-4">
+              <h3 class="text-montserrat text-hot-pink text-center text-sm">{{ Product.Name}}</h3>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 d-flex align-items-center justify-content-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 d-flex align-items-center
+             justify-content-center">
               <button class="btn btn-link text-hot-pink px-2"
-                      onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                      @click="removeProductFromCart(Product)">
                 <b-icon icon="dash"/>
               </button>
-              <input min="0" :value="Quantity" type="number" v-bind:id="Product.ProductID"  style="-webkit-appearance: textfield;"
+              <input min="0" disabled :value="Quantity" type="number" v-bind:id="Product.ProductID"  style="-webkit-appearance: textfield;"
                      class="form-control form-auth w-25 text-center" />
               <button class="btn btn-link text-hot-pink px-2" @click="addProductToCart(Product)">
                 <b-icon icon="plus"/>
               </button>
               <br/>
             </div>
-            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12 d-flex align-items-center">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12 d-flex align-items-center
+            justify-content-center justify-content-xl-start justify-content-md-start justify-content-lg-start my-4">
               <h3 class="text-bebas-neue text-hot-pink text-md">{{ Total | currency }}</h3>
             </div>
           </b-row>
           <b-row>
-            <div class="col-12 text-hot-pink text-bebas-neue text-lg pt-5">
-              Not Finished? <b-link :to="{ name: 'shop' }" class="text-hot-pink">Continue shopping</b-link>
+            <div class="col-12 text-hot-pink text-bebas-neue text-lg py-3 justify-content-xl-start justify-content-lg-start justify-content-center justify-content-md-start justify-content-sm-center">
+              <span class="text-center">
+                Not Finished?
+                <b-link :to="{ name: 'shop' }" class="text-hot-pink">Continue shopping</b-link>
+              </span>
             </div>
           </b-row>
         </b-row>
@@ -85,10 +91,22 @@
         </b-row>
         <b-row>
           <div class="col-12 text-center">
-            <p class="text-montserrat text-sm">
+            <p class="text-montserrat text-sm" v-b-toggle.collapse-instruct @click="rotateCaret">
               Order Instructions
-              <b-icon icon="caret-down-fill"/>
+              <b-icon icon="caret-down-fill" id="info-caret"/>
             </p>
+            <div class="col-12 text-center">
+              <b-collapse id="collapse-instruct">
+                <b-form-textarea
+                    id="textarea"
+                    v-model="text"
+                    placeholder="Enter order instructions here"
+                    rows="3"
+                    max-rows="6"
+                    class="mb-2"
+                />
+              </b-collapse>
+            </div>
           </div>
           <hr style="background: white; color: white; height: 4px;"/>
         </b-row>
@@ -122,6 +140,7 @@ export default {
         () => this.$store.getters.getNoInCart,
         () => {
           this.getProductsTotal()
+          this.getCartItems()
         }
     )
   },
@@ -173,10 +192,30 @@ export default {
     addProductToCart(product) {
       this.$store.commit('ADD_PRODUCT', {product: product, quantity: 1})
     },
+    removeProductFromCart(product) {
+      this.$store.commit('REMOVE_PRODUCT', {product: product, quantity: 1})
+    },
+    rotateCaret() {
+      let caret = document.getElementById("info-caret")
+      if (caret.classList.contains("rotate")) {
+        caret.classList.remove("rotate")
+        caret.classList.add("unrotate")
+      } else {
+        caret.classList.remove("unrotate")
+        caret.classList.add("rotate")
+      }
+    }
   },
 }
 </script>
 
 <style scoped>
-
+  .rotate {
+    transform: rotate(180deg);
+    transition: transform 0.15s linear;
+  }
+  .unrotate {
+    transform: rotate(0deg);
+    transition: transform 0.15s linear;
+  }
 </style>
