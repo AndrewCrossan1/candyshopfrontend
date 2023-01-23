@@ -4,6 +4,17 @@
       <!-- Filters -->
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3 bg-hot-pink text-white me-xl-5 me-lg-2 me-sm-0 me-0 me-md-0 me-0 rounded-2 p-3">
         <h3 class="text-bebas-neue text-start ms-xl-3 ms-lg-2 ms-md-1 ms-sm-0 ms-0 mb-3 pt-5 text-xxl">Filters</h3>
+        <div class="mb-3 mx-xl-3 mx-lg-2 mx-md-1 mx-sm-0 mx-0">
+          <label class="text-montserrat text-md text-decoration-underline fw-bold mb-2">Category</label>
+          <b-row v-for="category in categories" v-bind:key="category.CategoryID" class="my-0 p-1 category-filter-item">
+            <div class="col-8 text-start">
+              <b-link :to="{ name: 'Products by category' , params: {name: category.get_url }}" class="category-filter-text"> {{ category.Name }}</b-link>
+            </div>
+            <div class="col-4 text-end">
+              {{ category.product_count }}
+            </div>
+          </b-row>
+        </div>
       </div>
       <!-- Products -->
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 mt-3 mt-sm-3 mt-md-2 mt-lg-0 mt-xl-0">
@@ -218,4 +229,30 @@ export default {
 <style scoped lang="scss">
 $hot-pink: #ff69b4 !default;
 $breadcrumb-color: $hot-pink !default;
+.category-filter-item {
+  background-color: transparent;
+  border-radius: 8px;
+  transition: background-color 0.1s linear;
+}
+
+.category-filter-active {
+  background-color: darken($breadcrumb-color, 5%);
+
+  .category-filter-text {
+    text-decoration: underline;
+  }
+}
+
+.category-filter-text {
+  color: white;
+  text-decoration: none;
+  transition: text-decoration 0.1s linear;
+}
+.category-filter-item:hover {
+  background-color: darken($breadcrumb-color, 5%);
+
+  .category-filter-text {
+    text-decoration: underline;
+  }
+}
 </style>
