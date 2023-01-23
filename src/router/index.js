@@ -62,10 +62,11 @@ const routes = [
     }
   },
   {
-    path: '/products/:id/',
+    path: '/products/:ProductID/',
     name: 'product',
     component: () => import(/* webpackChunkName: "product" */ '../views/Shop/DetailView.vue'),
     meta: {
+      breadcrumb: [{ name: 'Home', path: '/', active: false}, { name: 'Products', path: '/products/', active: false}, { name: 'View Product', path: '/products/:ProductID/', active: true}],
       requiresAuth: false,
       seo: {
         title: 'Product',
