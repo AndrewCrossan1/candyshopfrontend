@@ -1,16 +1,17 @@
 <template>
   <carousel :perPage="5" :mouse-drag="true" class="mb-3" :autoplay="true" :touch-drag="true" :paginationEnabled="false">
     <slide v-for="product in products" :key="product.ProductID" class="category-pill">
-      <b-link class="category-link" :to="{name: 'Product', params: {name: product.get_url}}">{{ product.Name}}</b-link>
+      <RecentlyViewedProduct :product="product" />
     </slide>
   </carousel>
 </template>
 
 <script>
 import { Carousel, Slide } from 'vue-carousel';
+import RecentlyViewedProduct from './RecentlyViewedProduct.vue';
 
 export default {
-  name: "CategoryCarousel",
+  name: "ProductCarousel",
   props: {
     products: {
       type: Array,
@@ -24,7 +25,8 @@ export default {
   },
   components: {
     Carousel,
-    Slide
+    Slide,
+    RecentlyViewedProduct,
   },
 }
 </script>
