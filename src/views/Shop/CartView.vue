@@ -149,10 +149,29 @@
           <b-link :to="{ name: 'home' }" class="btn btn-outline-hot-pink text-montserrat">Go home</b-link>
         </div>
       </b-row>
+    <b-row>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3 mt-sm-3 mt-md-2 mt-lg-0 mt-xl-0 pt-5">
+        <b-row class="justify-content-center p-4">
+          <!-- Sorting and View Options -->
+          <b-row>
+            <div class="cat-heading">
+              <h1 class="text-bebas-neue text-hot-pink text-xxl">Recently Viewed Items</h1>
+              <p class="text-montserrat text-hot-pink">Take another look at these products you viewed</p>
+              <hr/>
+            </div>
+          </b-row>
+          <b-row>
+            <ProductCarousel :products="recentlyViewed"/>
+          </b-row>
+        </b-row>
+      </div>
+    </b-row>
   </div>
 </template>
 
 <script>
+
+import ProductCarousel from "@/components/ProductCarousel";
 
 export default {
   name: "CartView",
@@ -166,6 +185,9 @@ export default {
     items() {
       return this.$store.getters.getProducts
     },
+  },
+  components: {
+    ProductCarousel
   },
   created() {
     this.$watch(
