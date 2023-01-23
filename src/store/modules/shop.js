@@ -7,6 +7,7 @@ const state = {
     category: {},
     brand: {},
     newProducts: {},
+    currentProduct: {}
 }
 
 const getters = {
@@ -16,6 +17,7 @@ const getters = {
     category: state => state.category,
     brand: state => state.brand,
     newProducts: state => state.newProducts,
+    currentProduct: state => state.currentProduct
 }
 
 const mutations = {
@@ -36,6 +38,9 @@ const mutations = {
     },
     SET_NEW_PRODUCTS(state, newProducts) {
         state.newProducts = newProducts;
+    },
+    SET_CURRENT_PRODUCT(state, currentProduct) {
+        state.currentProduct = currentProduct;
     }
 }
 
@@ -131,6 +136,18 @@ const actions = {
             axios.get('http://localhost:8000/api/v1/shop/products/get_new_products/')
                 .then(response => {
                     commit('SET_NEW_PRODUCTS', response.data)
+                    resolve(response)
+                })
+                .catch(error => {
+                    reject(error)
+                });
+        })
+    },
+    async getProduct({ commit }, id) {
+        return new Promise(function(resolve, reject) {
+            axios.get(`http://localhost:8000/api/v1/shop/products/${id}/`)
+                .then(response => {
+                    commit('SET_CURRENT_PRODUCT', response.data)
                     resolve(response)
                 })
                 .catch(error => {
