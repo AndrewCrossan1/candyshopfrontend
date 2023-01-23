@@ -171,7 +171,7 @@
 
 <script>
 
-import ProductCarousel from "@/components/ProductCarousel";
+import ProductCarousel from "@/components/products/ProductCarousel";
 
 export default {
   name: "CartView",
