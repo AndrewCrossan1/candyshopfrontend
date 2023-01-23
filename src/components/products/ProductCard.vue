@@ -9,7 +9,7 @@
         />
         <b-card-body class="pt-2 px-0">
           <b-card-title class="text-sm text-center ">
-            {{ product.Name}}
+            <b-link class="text-decoration-none text-hot-pink" :to="{ name: 'product', params: { ProductID: product.ProductID }}">{{ product.Name}}</b-link>
           </b-card-title>
           <b-row>
             <div class="col-6">
