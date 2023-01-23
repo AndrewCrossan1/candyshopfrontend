@@ -12,6 +12,7 @@ const routes = [
     name: 'home',
     component: HomeView,
     meta: {
+      breadcrumb: [{ name: 'Home', path: '/', active: true}],
       requiresAuth: false,
       seo: {
         title: 'Home',
@@ -30,6 +31,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "cart" */ '../views/Shop/CartView.vue'),
     meta: {
         requiresAuth: false,
+        breadcrumb: [{ name: 'Home', path: '/', active: false}, { name: 'Products', path: '/products/', active: false}, { name: 'Cart', path: '/cart/', active: true}],
         seo: {
             title: 'Cart',
             metaTags: [
@@ -47,6 +49,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "products" */ '../views/Shop/ShopView.vue'),
     meta: {
       requiresAuth: false,
+      breadcrumb: [{ name: 'Home', path: '/', active: false}, { name: 'Products', path: '/products/', active: true}],
       seo: {
         title: 'Products',
         metaTags: [
